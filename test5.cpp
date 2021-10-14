@@ -34,21 +34,21 @@ public:
 /**
 * \brief без спецификации исключений
 */
-double root1(double a, double b) {
+double root1(const double a, const double b) {
     return -b/a;
 }
  
 /**
 * \brief со спецификацией throw()
 */
-double root2(double a, double b) throw() {
+double root2(const double a, const double b) throw() {
     return -b/a;
 }
  
 /**
 * \brief с конкретной спецификацией с подходящим стандартным исключением
 */
-double root3(double a, double b) throw(invalid_argument) {
+double root3(const double a, const double b) throw(invalid_argument) {
     if (abs(a) <= std::numeric_limits<double>::min())
         throw invalid_argument("a равно 0");
     return -b/a;
@@ -57,7 +57,7 @@ double root3(double a, double b) throw(invalid_argument) {
 /**
 * \brief Спецификация с собственным реализованным исключением
 */
-double root4_1(double a, double b) throw(except1) {
+double root4_1(const double a, const double b) throw(except1) {
     if (abs(a) <= std::numeric_limits<double>::min())
         throw except1();
     return -b/a;
@@ -66,7 +66,7 @@ double root4_1(double a, double b) throw(except1) {
 /**
 * \brief Спецификация с собственным реализованным исключением
 */
-double root4_2(double a, double b) throw(except2) {
+double root4_2(const double a, const double b) throw(except2) {
     if (abs(a) <= std::numeric_limits<double>::min())
         throw except2("a равно 0");
     return -b/a;
@@ -75,7 +75,7 @@ double root4_2(double a, double b) throw(except2) {
 /**
 * \brief Спецификация с собственным реализованным исключением
 */
-double root4_3(double a, double b) throw(except3) {
+double root4_3(const double a, const double b) throw(except3) {
     if (abs(a) <= std::numeric_limits<double>::min())
         throw except3("Неверный аргумент", a);
     return -b/a;
@@ -84,7 +84,7 @@ double root4_3(double a, double b) throw(except3) {
 void helper(double (*func)(double, double)) {
     double a, b;
     cout << "Введите a= ";
-    cin >> a;
+    cin >> a; 
     cout << "Введите b= ";
     cin >> b;
     cout << "Корень уравнения: " << func(a, b) << endl;
