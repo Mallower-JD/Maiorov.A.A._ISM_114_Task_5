@@ -1,6 +1,8 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <cmath>
+#include <limits>
  
 using namespace std;
 
@@ -47,7 +49,7 @@ double root2(double a, double b) throw() {
 * \brief с конкретной спецификацией с подходящим стандартным исключением
 */
 double root3(double a, double b) throw(invalid_argument) {
-    if (a = 0.0)
+    if (abs(a) <= std::numeric_limits<double>::min())
         throw invalid_argument("a равно 0");
     return -b/a;
 }
@@ -56,7 +58,7 @@ double root3(double a, double b) throw(invalid_argument) {
 * \brief Спецификация с собственным реализованным исключением
 */
 double root4_1(double a, double b) throw(except1) {
-    if (a = 0.0)
+    if (abs(a) <= std::numeric_limits<double>::min())
         throw except1();
     return -b/a;
 }
@@ -65,7 +67,7 @@ double root4_1(double a, double b) throw(except1) {
 * \brief Спецификация с собственным реализованным исключением
 */
 double root4_2(double a, double b) throw(except2) {
-    if (a = 0.0)
+    if (abs(a) <= std::numeric_limits<double>::min())
         throw except2("a равно 0");
     return -b/a;
 }
@@ -74,7 +76,7 @@ double root4_2(double a, double b) throw(except2) {
 * \brief Спецификация с собственным реализованным исключением
 */
 double root4_3(double a, double b) throw(except3) {
-    if (a <= 0.0)
+    if (abs(a) <= std::numeric_limits<double>::min())
         throw except3("Неверный аргумент", a);
     return -b/a;
 }
